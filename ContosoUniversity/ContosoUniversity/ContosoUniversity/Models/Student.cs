@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversity.Models
 {
@@ -12,6 +13,7 @@ namespace ContosoUniversity.Models
         public string LastName { get; set; }
         [StringLength(50)]
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
+        [Column("FirstName")]
         public string FirstMidName { get; set; }
         public string EmailAddress { get; set; }
         [DataType(DataType.Date)]
