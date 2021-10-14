@@ -152,5 +152,26 @@ namespace ContosoUniversity.Controllers
         {
             return _context.Courses.Any(e => e.CourseID == id);
         }
+
+        // GET:
+        public IActionResult UpdateCourseCredits()
+        {
+            return View();
+        }
+
+        // POST:
+        [HttpPost]
+        public async Task<IActionResult> UpdateCourseCredits(int? multiplier)
+        {
+            if (multiplier != null)
+            {
+                // ExecuteSqlCommandAsync replaced by ExecuteSqlRawAsync
+                ViewData["RowsAffected"] =
+                    await _context.Database.ExecuteSqlRawAsync(
+                        "UPDATE Course SET Credits = Credits * {0}",
+                        parameters: multiplier);
+            }
+            return View();
+        }
     }
 }
