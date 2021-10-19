@@ -1,0 +1,28 @@
+Command to scaffold from existing DB:
+
+Scaffold-DbContext -Connection "Server=DESKTOP-3RECD67\SQLEXPRESS; Database=angularTutorial; Trusted_Connection=True; MultipleActiveResultSets=true;" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models" -ContextDir "Data" -Context "FootballDbContext" -NoOnConfiguring
+
+
+Trouble shooting:
+
+----
+
+For me apparently it worked once I have also ran in Package Manager console :
+
+ 	Install-Package Microsoft.EntityFrameworkCore.Tools 
+
+Also make sure :
+
+To have other dependencies (for example Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.SqlServer, Microsoft.EntityFrameworkCore.SqlServer.Design...) referenced depending of your needs.
+
+To select the right assembly as target for your commands in the top-right corner of the PM console (I am frequently fooled by forgetting it...)
+
+----
+
+Unable to find provider assembly 'Microsoft.EntityFrameworkCore.SqlServer'. Ensure the name is correct and it's referenced by the project.
+
+-->
+
+The fix as mentioned was to add the SQL framework. You can add it very quickly via the package manager console using:
+
+	Install-Package Microsoft.EntityFrameworkCore.SqlServer
