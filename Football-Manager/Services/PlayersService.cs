@@ -20,15 +20,15 @@ namespace Football_Manager.Services
         public async Task<IEnumerable<Player>> GetPlayersList()
         {
             return await _context.Players
-                .Include(x => x.PositionId)
+                .Include(x => x.Position)
                 .ToListAsync();
         }
 
         public async Task<Player> GetPlayerById(int id)
         {
             return await _context.Players
-                .Include(x => x.PositionId)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Include(x => x.Position)
+                .FirstOrDefaultAsync(x => x.PlayerId == id);
         }
 
         public async Task<Player> CreatePlayer(Player player)

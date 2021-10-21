@@ -1,4 +1,5 @@
 using Football_Manager.Data;
+using Football_Manager.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace Football_Manager
             });
             services.AddDbContext<FootballDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IPlayersService, PlayersService>();
+            services.AddScoped<IPositionsService, PositionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

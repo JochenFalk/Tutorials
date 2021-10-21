@@ -18,30 +18,13 @@ namespace Football_Manager.Data
         {
         }
 
-        public virtual DbSet<Player> Players { get; set; }
-        public virtual DbSet<Position> Positions { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Position> Positions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-
-            modelBuilder.Entity<Player>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Name).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<Position>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Name).HasMaxLength(50);
-            });
-
-            OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<Player>().ToTable("Players");
+            modelBuilder.Entity<Position>().ToTable("Positions");
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
