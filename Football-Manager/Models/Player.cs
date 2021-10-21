@@ -11,6 +11,7 @@ namespace Football_Manager.Models
     {
         public int PlayerId { get; set; }
         public int? ShirtNo { get; set; }
+        [MaxLength(50)]
         public string Name { get; set; }
         public int? Appearances { get; set; }
         public int? Goals { get; set; }

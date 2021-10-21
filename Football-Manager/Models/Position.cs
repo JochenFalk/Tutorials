@@ -10,6 +10,7 @@ namespace Football_Manager.Models
     public class Position
     {
         public int PositionId { get; set; }
+        [MaxLength(50)]
         public string Name { get; set; }
         public int? DisplayOrder { get; set; }
 
