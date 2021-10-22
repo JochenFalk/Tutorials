@@ -1,1 +1,25 @@
-<p>details works!</p>
+<div class="container">
+  <br />
+  <h3>Player Details</h3>
+  <br />
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h4>{{ player.name }}</h4>
+        </div>
+        <div class="col text-right">
+          <a href="#" routerLink="/players/list" class="btn btn-secondary btn-sm">Back To Players List</a>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Id:</b> {{ player.playerId }}</li>
+      <li class="list-group-item"><b>Shirt No:</b> {{ player.shirtNo }}</li>
+      <li class="list-group-item"><b>Position:</b> {{ player.position?.name }}</li>
+      <li class="list-group-item"><b>Appearances:</b> {{ player.appearances }}</li>
+      <li class="list-group-item"><b>Goals:</b> {{ player.goals }}</li>
+      <li class="list-group-item"><b>Goals per match:</b> {{ player.goalsPerMatch }}</li>
+    </ul>
+  </div>
+</div>
