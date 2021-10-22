@@ -16,6 +16,22 @@ namespace Football_Manager.Models
         public int? Appearances { get; set; }
         public int? Goals { get; set; }
 
+        public decimal? GoalsPerMatch
+        {
+            get
+            {
+                if (this.Goals.HasValue &&  this.Appearances.HasValue)
+                {
+                    var goalsPerMatch = (decimal) Goals /  (decimal) Appearances;
+                    return Math.Round(goalsPerMatch, 2);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public Position Position { get; set; }
     }
 }

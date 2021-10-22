@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Player } from "../player";
+import { PlayersService } from "../players.service";
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  players: Player[] = [];
 
-  ngOnInit() {
+  constructor(public playersService: PlayersService) { }
+
+  ngOnInit(): void {
+    this.playersService.getPlayers().subscribe((data: Player[]) => {
+      this.players = data;
+    });
   }
 
+  deletePlayer(id) {
+    this.playersService.deletePlayer(id).subscribe(res => {
+      this.players = this.players.filter(item => item.PlayerId !== id);
+    });
+  }
 }
