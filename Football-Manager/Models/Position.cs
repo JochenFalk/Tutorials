@@ -9,6 +9,7 @@ namespace Football_Manager.Models
 {
     public class Position
     {
+        [Key]
         public int PositionId { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }

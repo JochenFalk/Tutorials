@@ -7,5 +7,6 @@ export interface Player {
   Appearances?: number;
   Goals?: number;
   GoalsPerMatch?: number;
+  PositionId: number;
   Position: Position;
 }

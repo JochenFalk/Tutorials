@@ -9,6 +9,7 @@ namespace Football_Manager.Models
 {
     public class Player
     {
+        [Key]
         public int PlayerId { get; set; }
         public int? ShirtNo { get; set; }
         [MaxLength(50)]
@@ -20,9 +21,9 @@ namespace Football_Manager.Models
         {
             get
             {
-                if (this.Goals.HasValue &&  this.Appearances.HasValue)
+                if (this.Goals.HasValue && this.Appearances.HasValue)
                 {
-                    var goalsPerMatch = (decimal) Goals /  (decimal) Appearances;
+                    var goalsPerMatch = (decimal)Goals / (decimal)Appearances;
                     return Math.Round(goalsPerMatch, 2);
                 }
                 else
@@ -32,6 +33,8 @@ namespace Football_Manager.Models
             }
         }
 
+        [ForeignKey("Positions")]
+        public int? PositionId { get; set; }
         public Position Position { get; set; }
     }
 }
