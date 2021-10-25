@@ -44,7 +44,7 @@ export class PlayersService {
     return this.httpClient.put<Player>(this.apiURL + '/players/' + id, JSON.stringify(player), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
-      );
+    );
   }
 
   deletePlayer(id) {

@@ -1,1 +1,65 @@
-<p>edit works!</p>
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col">
+      <h3>Update Player</h3>
+    </div>
+    <div class="col text-right">
+      <a href="#" routerLink="/players/list" class="btn btn-secondary btn-sm">Back To Players List</a>
+    </div>
+  </div>
+  <br />
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm)">
+ 
+    <input formControlName="playerId"
+           id="playerId"
+           type="hidden"
+           class="form-control" />
+ 
+    <div class="form-group">
+      <label for="shirtNo">Shirt No:</label>
+      <input formControlName="shirtNo"
+             id="shirtNo"
+             type="text"
+             class="form-control" />
+    </div>
+ 
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input formControlName="name"
+             id="name"
+             type="text"
+             class="form-control" />
+    </div>
+ 
+    <div class="form-group">
+      <label for="name">Position:</label>
+      <select formControlName="positionId"
+              id="positionId"
+              class="form-control">
+        <option value="">- Select -</option>
+        <option *ngFor="let position of positions" [ngValue]="position.positionId">
+          {{position.name}}
+        </option>
+      </select>
+    </div>
+ 
+      <div class="form-group">
+        <label for="appearances">Appearances:</label>
+        <input formControlName="appearances"
+               id="appearances"
+               type="text"
+               class="form-control" />
+      </div>
+ 
+      <div class="form-group">
+        <label for="goals">Goals:</label>
+        <input formControlName="goals"
+               id="goals"
+               type="text"
+               class="form-control" />
+      </div>
+ 
+      <button class="btn btn-primary" type="submit" [disabled]="!editForm.valid">Update</button>
+  </form>
+</div>

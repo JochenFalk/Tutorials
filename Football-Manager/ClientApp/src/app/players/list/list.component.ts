@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Player } from "../player";
 import { PlayersService } from "../players.service";
 
@@ -11,7 +12,10 @@ export class ListComponent implements OnInit {
 
   players: Player[] = [];
 
-  constructor(public playersService: PlayersService) { }
+  constructor(
+    public playersService: PlayersService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.playersService.getPlayers().subscribe((data: Player[]) => {
@@ -19,9 +23,11 @@ export class ListComponent implements OnInit {
     });
   }
 
-  deletePlayer(id) {
-    this.playersService.deletePlayer(id).subscribe(res => {
-      this.players = this.players.filter(item => item.PlayerId !== id);
+  deletePlayer(playerId) {
+    this.playersService.deletePlayer(playerId).subscribe(res => {
+      this.players = this.players.filter(item => item.PlayerId !== playerId);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+        this.router.navigate(['players/list']));
     });
   }
 }
